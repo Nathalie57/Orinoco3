@@ -6277,7 +6277,9 @@ button.bg-dark:focus {
 
 .pt-4,
 .py-4 {
-  padding-top: 1.5rem !important; }
+  padding-top: 1.5rem !important;
+  width: 180px;
+  }
 
 .pr-4,
 .px-4 {
@@ -7963,7 +7965,9 @@ h1, h2, h3, h4, h5,
   margin-bottom: 30px; }
   .menu-entry .img {
     display: block;
-    height: 200px; }
+    height: 200px;
+    width: 280px;
+    }
   .menu-entry .text h3 {
     font-size: 18px;
     text-transform: uppercase; }
