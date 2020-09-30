@@ -16,15 +16,12 @@ class Cart extends Component {
     `;
   }
 
-  templateProduct(data) {
-    return ``;
+  templateCartList(){
+    return `
+    
+    `;
   }
 
-
-  templateInnerSummery(){
-    return ``;
-  }
-  
   add(productData){
     console.log(productData);
     this.products.push(productData);
