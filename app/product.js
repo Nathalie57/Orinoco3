@@ -1,7 +1,7 @@
 class Product extends Component {
     constructor(props, domTarget) {
         console.log(props);
-        super(props, domTarget, false, "product");
+        super(props, domTarget, "product");
         this.resume = true;
         this.render();
     }
@@ -10,7 +10,7 @@ class Product extends Component {
 		this.resume = !this.resume;
 		if(!this.resume) pageInit('product', this._id);
         this.render();
-    }
+	}
 
     render(){
 		this.DOM.innerHTML = this.resume ? this.templateResume() : this.templateSingle();
@@ -44,17 +44,14 @@ class Product extends Component {
 				<div class="row mt-4">
 					<div class="col-md-6">
 						<div class="form-group d-flex">
-			  <div class="select-wrap">
-			  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
-			  <select name="" id="" class="form-control">
-				  <option value="">Small</option>
-				<option value="">Medium</option>
-				<option value="">Large</option>
-				<option value="">Extra Large</option>
-			  </select>
-			</div>
-			</div>
-					</div>
+							<div id="color-choice" class="select-wrap" onclick = "orinoco['${this.ref}'].colorChoice()">
+								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
+									<select name="" id="" class="form-control">
+										<option value="">Choisir la couleur</option>
+									</select>
+								</div>
+							</div>
+						</div>
 					<div class="w-100"></div>
 					<div class="input-group col-md-6 d-flex mb-3">
 			 <span class="input-group-btn mr-2">
@@ -70,10 +67,22 @@ class Product extends Component {
 			 </span>
 		  </div>
 	  </div>
-	  <p><a href="cart.html" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+	  <p><a href="#" class="btn btn-primary py-3 px-5" onclick="orinoco.cart.add('${this.ref}')">Ajouter au panier</a></p>
 		</div>
 	</div>
 		`;
-    }
+	}
+	
+	colorChoice(colors) {				
+		var custom = document.getElementById('color-choice');
+		colors = this.colors;
+		var colorSelected = document.createElement('select');
+		while(colors.length) {
+			var color = colors.pop();
+			var option = new Option(color, color);
+			colorSelected.options[colorSelected.options.length] = option;
+		}
+		custom.appendChild(colorSelected);
+	}
 }
 

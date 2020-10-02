@@ -1,6 +1,6 @@
 class Cart extends Component {
   constructor(props, domTarget) {
-    super(props, domTarget, true, "cart");
+    super(props, domTarget, "cart");
     this.products = [];
     this.render();
   }
