@@ -8,8 +8,14 @@ class Component {
         this.DOM = document.createElement(tagName);
         domTarget.appendChild(this.DOM);
         }
-    orinoco[this.name] = this;
+    this.ref = this._id ? this._id : this.name;
+    orinoco[this.ref] = this;
     }
 
-    render(){}
+    render() {}
+
+    die() {
+        this.DOM.parentNode.removeChild(this.DOM);
+        delete orinoco[this.ref];
+    }
 }
