@@ -46,9 +46,11 @@ class Product extends Component {
 						<div class="form-group d-flex">
 							<div id="color-choice" class="select-wrap" onclick = "orinoco['${this.ref}'].colorChoice()">
 								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<select name="" id="" class="form-control">
-										<option value="">Choisir la couleur</option>
-									</select>
+									<label for="colorChoice" id="color">
+										<select name="colorChoice" id="colorChoice" class="form-control">
+											
+										</select>
+									</label>
 								</div>
 							</div>
 						</div>
@@ -74,15 +76,23 @@ class Product extends Component {
 	}
 	
 	colorChoice(colors) {				
-		var custom = document.getElementById('color-choice');
+		// var custom = document.getElementById('color-choice');
+		// colors = this.colors;
+		// var colorSelected = document.createElement('select');
+		// while(colors.length) {
+		// 	var color = colors.shift();
+		// 	var option = new Option(color, color);
+		// 	colorSelected.options[colorSelected.options.length] = option;
+		// }
+		// custom.appendChild(colorSelected);
 		colors = this.colors;
-		var colorSelected = document.createElement('select');
-		while(colors.length) {
-			var color = colors.pop();
-			var option = new Option(color, color);
-			colorSelected.options[colorSelected.options.length] = option;
-		}
-		custom.appendChild(colorSelected);
+		const select = document.getElementById("colorChoice");
+		colors.forEach(function(color) {
+			let option = document.createElement('option');
+            let optionValue = document.createTextNode(color);
+            option.appendChild(optionValue);
+            select.appendChild(option);
+		  });
 	}
 }
 

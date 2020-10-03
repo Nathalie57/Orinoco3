@@ -14,7 +14,8 @@ function pageInit(page, argument) {
   // if (argument)  //TODO : ajouter dans l'url le nom de l'argument
   orinoco.pages.push(page);
   switch(page) {
-    case "home"    : return new Home(content);
-    case "product" : return new ProductPage(content, argument);
+    case "home"     : return new Home(content);
+    case "product"  : return new ProductPage(content, argument);
+    case "cartPage" : return new CartPage(content, argument);
   }
 }
