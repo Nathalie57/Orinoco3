@@ -70,21 +70,13 @@ class Product extends Component {
 		  </div>
 	  </div>
 	  <p><a href="#" class="btn btn-primary py-3 px-5" onclick="orinoco.cart.add('${this.ref}')">Ajouter au panier</a></p>
+	  <p><a href="#" class="btn btn-primary py-3 px-5" onclick="orinoco.cart.click('${this.ref}')">Voir le panier</a></p>
 		</div>
 	</div>
 		`;
 	}
 	
-	colorChoice(colors) {				
-		// var custom = document.getElementById('color-choice');
-		// colors = this.colors;
-		// var colorSelected = document.createElement('select');
-		// while(colors.length) {
-		// 	var color = colors.shift();
-		// 	var option = new Option(color, color);
-		// 	colorSelected.options[colorSelected.options.length] = option;
-		// }
-		// custom.appendChild(colorSelected);
+	colorChoice(colors) {
 		colors = this.colors;
 		const select = document.getElementById("colorChoice");
 		colors.forEach(function(color) {
@@ -92,7 +84,7 @@ class Product extends Component {
             let optionValue = document.createTextNode(color);
             option.appendChild(optionValue);
             select.appendChild(option);
-		  });
+		});
 	}
 }
 

@@ -1,9 +1,8 @@
 class CartPage {
-    constructor(domTarget, products){
-            this.domTarget = domTarget;
+    constructor(domTarget, productId){
+        
+        for (const [key, value] of Object.entries(orinoco)) {
+            if (value instanceof Product) orinoco[key].die();
         }
-
-    // showNumberItems() {
-    //     new Cart({name:"cart"}, document.querySelector(".icon-shopping_cart"));
-    // }
+    }
 }
