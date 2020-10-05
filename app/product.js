@@ -1,7 +1,8 @@
 class Product extends Component {
     constructor(props, domTarget) {
         console.log(props);
-        super(props, domTarget, "product");
+		super(props, domTarget, "product");
+		this.products = [];
         this.resume = true;
         this.render();
     }
@@ -43,34 +44,22 @@ class Product extends Component {
 			<p>${this.description}</p>
 				<div class="row mt-4">
 					<div class="col-md-6">
-						<div class="form-group d-flex">
-							<div id="color-choice" class="select-wrap" onclick = "orinoco['${this.ref}'].colorChoice()">
+						<div class="form-group" onclick = "orinoco['${this.ref}'].colorChoice()">
+						<label for="colorChoice" id="color">
+							<div class="select-wrap">
 								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-									<label for="colorChoice" id="color">
 										<select name="colorChoice" id="colorChoice" class="form-control">
-											
+											<option>Couleur</option>
 										</select>
+									</div>
+									</div>
 									</label>
-								</div>
-							</div>
 						</div>
-					<div class="w-100"></div>
-					<div class="input-group col-md-6 d-flex mb-3">
-			 <span class="input-group-btn mr-2">
-				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-			   <i class="icon-minus"></i>
-				</button>
-				</span>
-			 <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-			 <span class="input-group-btn ml-2">
-				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-				 <i class="icon-plus"></i>
-			 </button>
-			 </span>
-		  </div>
-	  </div>
-	  <p><a href="#" class="btn btn-primary py-3 px-5" onclick="orinoco.cart.add('${this.ref}')">Ajouter au panier</a></p>
-	  <p><a href="#" class="btn btn-primary py-3 px-5" onclick="orinoco.cart.click('${this.ref}')">Voir le panier</a></p>
+	  		</div>
+	  	<p>
+	  		<div class="btn btn-primary py-3 px-5" onclick="orinoco['${this.ref}'].add()">Ajouter au panier</div>
+		  	<div class="btn btn-primary py-3 px-5" onclick="orinoco.cart.click('${this.ref}')">Voir le panier</div>
+		</p>
 		</div>
 	</div>
 		`;
@@ -85,6 +74,13 @@ class Product extends Component {
             option.appendChild(optionValue);
             select.appendChild(option);
 		});
+	}
+
+	add() {
+		const item = JSON.stringify({imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id});
+    	this.products.push(item);
+		console.log(item);
+		localStorage.setItem("items", item);
 	}
 }
 
