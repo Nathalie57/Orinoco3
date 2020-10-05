@@ -17,8 +17,8 @@ class Cart extends Component {
   }
 
   iconCartTemplate() {
-    return `
-     <span class="bag d-flex justify-content-center align-items-center" onclick="orinoco['${this.ref}'].click()"><small>${this.products.length}</small></span></a>
+    return `   
+      <span class="bag d-flex justify-content-center align-items-center" onclick="orinoco['${this.ref}'].click()"><small>${this.products.length}</small></span></a>
     `;
   }
 
@@ -131,15 +131,9 @@ class Cart extends Component {
     `
   }
   
-  // add(productRef){
-  //   console.log(productRef);
-  //   const items = this.products.push(orinoco.dataManager.products[productRef]);
-  //   this.render();
-  // }
-
-  // add() {
-  //   const item = JSON.stringify({imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id});
-  //   this.products.push(item);
-  //   console.log(item);
-  // }
+  add(product){
+    this.products.push(product);
+    orinoco.dataManager.setLocalStorage("items",this.products);
+    this.render();
+  }
 }

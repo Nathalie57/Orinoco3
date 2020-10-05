@@ -48,39 +48,39 @@ class Product extends Component {
 						<label for="colorChoice" id="color">
 							<div class="select-wrap">
 								<div class="icon"><span class="ion-ios-arrow-down"></span></div>
-										<select name="colorChoice" id="colorChoice" class="form-control">
-											<option>Couleur</option>
-										</select>
-									</div>
-									</div>
-									</label>
-						</div>
-	  		</div>
-	  	<p>
-	  		<div class="btn btn-primary py-3 px-5" onclick="orinoco['${this.ref}'].add()">Ajouter au panier</div>
-		  	<div class="btn btn-primary py-3 px-5" onclick="orinoco.cart.click('${this.ref}')">Voir le panier</div>
-		</p>
+									<select name="colorChoice" id="colorChoice" class="form-control">
+										onchange="orinoco['${this.ref}'].selectColor(this.value)">
+										<option selected value="null">-- couleur --</option>
+										${orinoco[this.ref].colorChoice()}
+									</select>
+								</div>
+							</div>
+						</label>
+					</div>
+	  			</div>
+			<p>
+				<div class="btn btn-primary py-3 px-5" onclick="orinoco['${this.ref}'].add()">Ajouter au panier</div>
+				<div class="btn btn-primary py-3 px-5" onclick="orinoco.cart.click('${this.ref}')">Voir le panier</div>
+			</p>
+			</div>
 		</div>
-	</div>
 		`;
 	}
 	
-	colorChoice(colors) {
-		colors = this.colors;
-		const select = document.getElementById("colorChoice");
-		colors.forEach(function(color) {
-			let option = document.createElement('option');
-            let optionValue = document.createTextNode(color);
-            option.appendChild(optionValue);
-            select.appendChild(option);
+	colorChoice() {
+		let content = "";
+		this.colors.forEach(function (color) {      
+		  	content += `<option value="${color}">${color}</option>`;
 		});
+		return content;
 	}
 
 	add() {
-		const item = JSON.stringify({imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id});
-    	this.products.push(item);
-		console.log(item);
-		localStorage.setItem("items", item);
+		orinoco.cart.add({ imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id });
+	  }
+	
+	selectColor(info) {
+		console.log("info:", info);
 	}
 }
 

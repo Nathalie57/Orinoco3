@@ -10,4 +10,12 @@ class DataManager {
         this.products  = await tempData.json();
         callbackFunction();
     }
+
+    setLocalStorage(value, content) {
+        localStorage.setItem(value, JSON.stringify(content));
+    }
+
+    getLocalStorage(value){
+        return JSON.parse(localStorage.getItem(value));
+    }
 }
