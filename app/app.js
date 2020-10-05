@@ -6,7 +6,7 @@ var orinoco = {
   pages : []
 };
 new DataManager(config.server);
-new Cart({name:"cart"}, document.querySelector("#resume-products"));
+new Cart({name:"cart"}, document.querySelector(".cart"));
 const content  = document.querySelector("#resume-products");
 
 function pageInit(page, argument) {

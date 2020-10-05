@@ -1,9 +1,11 @@
 class Cart extends Component {
   constructor(props, domTarget) {
     super(props, domTarget, "cart");
-    this.products = [];
+    const local = orinoco.dataManager.getLocalStorage("items");    
+    this.products = local !== null? local: [];
     this.resume = true;
     this.render();
+    
   }
 
   click(productRef) {
@@ -13,12 +15,14 @@ class Cart extends Component {
   }
 
   render() {
-    this.DOM.innerHTML = this.resume ? this.iconCartTemplate() : this.cartListTemplate();
+    this.DOM.innerHTML = this.iconCartTemplate();
   }
 
   iconCartTemplate() {
     return `
-     <span class="bag d-flex justify-content-center align-items-center" onclick="orinoco['${this.ref}'].click()"><small>${this.products.length}</small></span></a>
+    <a href="#" class="nav-link"><span class="icon icon-shopping_cart"></span>
+    <span class="bag d-flex justify-content-center align-items-center"onclick="orinoco['${this.ref}'].click()"><small>${this.products.length}</small></span></a>
+  </a>
     `;
   }
 
@@ -131,11 +135,11 @@ class Cart extends Component {
     `
   }
   
-  // add(productRef){
-  //   console.log(productRef);
-  //   const items = this.products.push(orinoco.dataManager.products[productRef]);
-  //   this.render();
-  // }
+  add(product){
+    this.products.push(product);
+    orinoco.dataManager.setLocalStorage("items",this.products);
+    this.render();
+  }
 
   // add() {
   //   const item = JSON.stringify({imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id});
