@@ -15,7 +15,11 @@ class DataManager {
         localStorage.setItem(value, JSON.stringify(content));
     }
 
-    getLocalStorage(value){
+    getLocalStorage(value) {
         return JSON.parse(localStorage.getItem(value));
+    }
+
+    removeItemStorage(value) {
+        localStorage.removeItem(value);
     }
 }
