@@ -12,6 +12,7 @@ class CartPage {
     render(){
         if(orinoco.cart.products.length !== 0) {
             this.domTarget.innerHTML = this.templateCartList();
+            new Form({name:"form"}, document.querySelector("#order-form"));
         }
         else this.domTarget.innerHTML = this.templateEmptyCart();
     }
@@ -47,6 +48,15 @@ class CartPage {
 							${orinoco.cart.totalCart()}
 						</p>
 					</div>
+				</div>
+			</div>
+		</div>
+    </section>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-8" id="order-form">
+					
 				</div>
 			</div>
 		</div>
