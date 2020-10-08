@@ -1,16 +1,18 @@
 class Form extends Component {
     constructor(props, domTarget) {
         super(props, domTarget, "form");
+        this.order = {};
+        this.resume = true;
         this.render();
     }
 
     render(){
-		this.DOM.innerHTML = this.templateOrderForm();
+		this.DOM.innerHTML = this.resume ? this.templateOrderForm() : this.validateOrder();
     }
 
     templateOrderForm() {
         return `
-        <form method="post" action="#" onsubmit="return validateOrder()" class="billing-form ftco-bg-dark p-3 p-md-5">
+        <form method="post" class="billing-form ftco-bg-dark p-3 p-md-5">
         <h3 class="mb-4 billing-heading">Remplissez le formulaire pour passer commande</h3>
         <div class="row align-items-end">
             <div class="col-md-6">
@@ -48,25 +50,31 @@ class Form extends Component {
                 </div>
             </div>
             <div class="w-100"></div>
-            <div class="form-group">
-                <input type="submit" on value="Commander" class="btn btn-primary py-3 px-5">
-            </div>
         </div>
     </form>
         `;
     }
     
-    validateOrder() {
-        if(orinoco.dataManager.getLocalStorage("items")) {
-            let contact = {
-                lastname : document.getElementById("lastname").value,
-                firstname : document.getElementById("firstname").value,
-                address : document.getElementById("address").value,
-                town : document.getElementById("town").value,
-                email : document.getElementById("email").value
-            };
-            console.log(contact);
-            return true;
+    validateOrder() {        
+        if(orinoco.dataManager.getLocalStorage("items") !== null) {
+            let products = [];
+            let currentProducts = orinoco.dataManager.getLocalStorage("items");
+            for (let i = 0; i < currentProducts.length; i++) {
+                products.push(currentProducts[i]._id);
+              }
+            let contact  = new Contact(lastname.value, firstname.value, address.value, town.value, email.value);
+            let order = {contact, products};
+            console.log(order);
+            orinoco.dataManager.postOrder(order).then(data => {
+                //localStorage.setItem('order_id', data.order_id);
+                //localStorage.setItem('totalPrice', total);
+                console.log(data);
+            });
+            // this.resume = !this.resume;
+            // if(!this.resume) pageInit('confirmation', products);
+            // this.render();
+            // removeItemStorage("items");
+            // return true;
         }
         else return false;
     }
