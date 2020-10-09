@@ -1,7 +1,6 @@
 class CartPage {
     constructor(domTarget){
         this.domTarget = domTarget;
-       // let products = orinoco.dataManager.getLocalStorage("items");
         for (const [key, value] of Object.entries(orinoco)) {
             if (value instanceof Product) orinoco[key].die();
         }
@@ -54,12 +53,15 @@ class CartPage {
 	<section class="ftco-section">
 		<div class="container">
 			<div class="row">
-				<div class="col-xl-8" id="order-form">
-					
+                <div class="col-xl-8">
+                    <form method="post" class="billing-form ftco-bg-dark p-3 p-md-5" id="order-form">
+                    
+                    
+                    </form>
+                    <div class="form-group">
+                        <input onclick="orinoco.form.validateOrder()" value="Commander" class="btn btn-primary py-3 px-5">
+                    </div>
                 </div>
-                <div class="form-group">
-                <input value="Commander" onclick="orinoco.form.validateOrder()" class="btn btn-primary py-3 px-5">
-            </div>
 			</div>
 		</div>
 	</section>
