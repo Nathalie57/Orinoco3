@@ -21,9 +21,9 @@ class Product extends Component {
 		return `
 		<div class="col-md-3">
 			<div class="menu-entry">
-        		<a href="#" class="img" style="background-image: url(${this.imageUrl});"></a>
+        		<div class="img" style="background-image: url(${this.imageUrl});"></div>
 				<div class="text text-center pt-4">
-					<h3><a href="#">${this.name}</a></h3>
+					<h3><div>${this.name}</div></h3>
 					<p class="price"><span>${this.price * .01}€</span></p>
 					<p><button class="btn btn-primary btn-outline-primary" onclick="orinoco['${this.ref}'].click()">Voir les détails</button></p>
 				</div>
@@ -36,7 +36,7 @@ class Product extends Component {
 		return `
 		<div class="row" id="single-product">
 		<div class="col-lg-6 mb-5">
-			<a href="${this.imageUrl}" class="image-popup"><img src="${this.imageUrl}" class="img-fluid" alt="Colorlib Template"></a>
+			<img src="${this.imageUrl}" class="img-fluid" alt="Colorlib Template">
 		</div>
 		<div class="col-lg-6 product-details pl-md-5">
 			<h3>${this.name}</h3>

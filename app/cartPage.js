@@ -1,7 +1,7 @@
 class CartPage {
     constructor(domTarget){
         this.domTarget = domTarget;
-        let products = orinoco.dataManager.getLocalStorage("items");
+       // let products = orinoco.dataManager.getLocalStorage("items");
         for (const [key, value] of Object.entries(orinoco)) {
             if (value instanceof Product) orinoco[key].die();
         }

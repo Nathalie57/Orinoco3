@@ -12,6 +12,7 @@ const content  = document.querySelector("#resume-products");
 function pageInit(page, argument) {
   console.log("pageInit", page, argument);
   // if (argument)  //TODO : ajouter dans l'url le nom de l'argument
+
   orinoco.pages.push(page);
   switch(page) {
     case "home"         : return new Home(content);
