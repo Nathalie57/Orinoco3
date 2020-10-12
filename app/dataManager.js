@@ -3,7 +3,7 @@ class DataManager {
         orinoco.dataManager = this;
         this.src            = src;
         this.products       = null;
-       // this.data           = null;
+        this.response       = null;
     }
 
     async getProducts(callbackFunction) {
@@ -12,16 +12,16 @@ class DataManager {
         callbackFunction();
     }
 
-    async postOrder() {        
+    async postOrder(data) {        
         const tempData = await fetch("http://"+this.src+"order", {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
             },
-            body: this.data
+            body: JSON.stringify(data)
         });
-        let response = await tempData.json();
-        console.log(response);
+        this.response = await tempData.json();
+        console.log(this.response);
     }
 
     setLocalStorage(value, content) {

@@ -42,7 +42,7 @@ class Form extends Component {
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="city">Ville</label>
-                    <input type="text" class="form-control" name="city" id="city" required minlength="225">
+                    <input type="text" class="form-control" name="city" id="city" required minlength="2" maxlength="25">
                     <span id="missCity">    
                 </div>
             </div>
@@ -101,25 +101,16 @@ class Form extends Component {
                 products.push(currentProducts[i]._id);
             }
             let contact  = new Contact(lastName.value, firstName.value, address.value, city.value, email.value);
- 
-            // let contact  = {
-            //     lastname : lastName.value, 
-            //     firstName : firstName.value, 
-            //     address : address.value, 
-            //     city : city.value, 
-            //     email : email.value
-            // };
 
             let order = {contact, products};
-            console.log(order);
-            orinoco.dataManager.postOrder(order).then(data => {
-                //localStorage.setItem('order_id', data.order_id);
-                console.log(data);
-            });
-            orinoco.dataManager.clearLocalStorage();
+            this.response = orinoco.dataManager.postOrder(order);
+            console.log(this.response);
+            localStorage.setItem('orderId', this.response);
+
             this.resume = !this.resume;
             if(!this.resume) pageInit('confirmation', products);
             this.render();
+            //orinoco.dataManager.clearLocalStorage();
         }
         else return false;
     }
@@ -132,7 +123,7 @@ class Form extends Component {
                     <div class="col-md-12">
                         <h2 class="mb-3">Merci pour votre commande !</h2>
                         <p>Nous vous remercions pour votre achat d'un montant de ${orinoco.cart.totalCart()}</p>
-                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ..........</p>
+                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ${localStorage.getItem("order_id")}</p>
                     </div>
                 </div></div>
         </section>
