@@ -32,21 +32,34 @@ class Cart extends Component {
   }
 
   cartItem() {
-    let content = "";
-    this.products.forEach(function (product) {      
-    content += `
-        <tr class="text-center">
-          <td class="product-remove"><div onclick=""><span class="icon-close"></span></div></td>
-          <td class="image-prod">
-              <div class="img" style="background-image:url(${product.imageUrl});"></div>
-          </td>
-          <td class="product-name">
-              <h3>${product.name}</h3>
-          </td>
-          <td class="price">${product.price * .01}€</td>
-        </tr>  
-      `;
-    });
+    let idArray = [];
+    let currentProducts = orinoco.dataManager.getLocalStorage("items");
+    for (let i = 0; i < currentProducts.length; i++) {
+        idArray.push(currentProducts[i]._id);
+    }
+    let newIdArray = new Set(idArray); 
+      console.log(newIdArray);
+      let content = "";
+      this.products.forEach(function (product) {  
+      content += `
+          <tr class="text-center">
+            <td class="product-remove"><div onclick=""><span class="icon-close"></span></div></td>
+            <td class="image-prod">
+                <div class="img" style="background-image:url(${product.imageUrl});"></div>
+            </td>
+            <td class="product-name">
+                <h3>${product.name}</h3>
+            </td>
+            <td class="price">${product.price/100}€</td>
+            <td class="quantity">
+              <div class="input-group mb-3">
+                <input type="text" name="quantity"class="quantity form-control input-number" value="" min="1" max="100">
+              </div>
+            </td>
+            <td class="total">$4.90</td>
+          </tr>   
+        `;
+      });
     return content;
   }
 
@@ -57,7 +70,7 @@ class Cart extends Component {
       total = total + this.products[i].price++;
     }
     return content = `
-			<span>${total * .01}€</span>
+			<span>${total/100}€</span>
     `;
   }
 }

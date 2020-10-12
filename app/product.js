@@ -40,7 +40,7 @@ class Product extends Component {
 		</div>
 		<div class="col-lg-6 product-details pl-md-5">
 			<h3>${this.name}</h3>
-			<p class="price"><span>${this.price * .01}€</span></p>
+			<p class="price"><span>${this.price/100}€</span></p>
 			<p>${this.description}</p>
 				<div class="row mt-4">
 					<div class="col-md-6">

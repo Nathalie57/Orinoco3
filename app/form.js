@@ -1,7 +1,6 @@
 class Form extends Component {
     constructor(props, domTarget) {
         super(props, domTarget, "form");
-        this.order = {};
         this.resume = true;
         this.render();
     }
@@ -17,16 +16,16 @@ class Form extends Component {
         <div class="row align-items-end">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="lastname">Nom</label>
-                    <input type="text" class="form-control" name="lastname" id="lastname" required minlength="2" maxlength="25">
-                    <span id="missLastname">    
+                    <label for="lastName">Nom</label>
+                    <input type="text" class="form-control" name="lastName" id="lastName" required minlength="2" maxlength="25">
+                    <span id="missLastName">    
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="firstname">Prénom</label>
-                    <input type="text" class="form-control" name="firstname" id="firstname" required minlength="6" maxlength="6">
-                    <span id="missFirstname">    
+                    <label for="firstName">Prénom</label>
+                    <input type="text" class="form-control" name="firstName" id="firstName" required minlength="2" maxlength="25">
+                    <span id="missFirstName">    
                 </div>
             </div>
             <div class="w-100"></div>
@@ -42,9 +41,9 @@ class Form extends Component {
             <div class="w-100"></div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="town">Ville</label>
-                    <input type="text" class="form-control" name="town" id="town" required minlength="6" maxlength="6">
-                    <span id="missTown">    
+                    <label for="city">Ville</label>
+                    <input type="text" class="form-control" name="city" id="city" required minlength="225">
+                    <span id="missCity">    
                 </div>
             </div>
             <div class="col-md-6">
@@ -61,29 +60,29 @@ class Form extends Component {
     }
 
     validateInput() {
-        let checkText = /[a-z]/;
+        let checkText = /[A-Za-z.-]/;
         let checkEmail = /.+@.+\..+/;
-        var missLastname = document.getElementById('missLastname');
-        var missFirstname = document.getElementById('missFirstname');
+        var missLastName = document.getElementById('missLastName');
+        var missFirstName = document.getElementById('missFirstName');
         var missAddress = document.getElementById('missAddress');
-        var missTown = document.getElementById('missTown');
+        var missCity = document.getElementById('missCity');
         var missEmail = document.getElementById('missEmail');
 
-        if (checkText.test(lastname.value) == false) {
-                missLastname.textContent = "Le nom de famille est obligatoire.";
-                missLastname.style.color = "red";
+        if (checkText.test(lastName.value) == false) {
+                missLastName.textContent = "Le nom de famille est obligatoire.";
+                missLastName.style.color = "red";
                 return false;
-            } else if (checkText.test(firstname.value) == false) {
-                missFirstname.textContent = "Le prénom de famille est obligatoire.";
-                missFirstname.style.color = "red";
+            } else if (checkText.test(firstName.value) == false) {
+                missFirstName.textContent = "Le prénom de famille est obligatoire.";
+                missFirstName.style.color = "red";
                 return false;
             } else if (checkText.test(address.value) == false) {
                 missAddress.textContent = "L'adresse est obligatoire.";
                 missAddress.style.color = "red";
                 return false;
-            } else if (checkText.test(town.value) == false) {
-                missTown.textContent = "La ville est obligatoire.";
-                missTown.style.color = "red";
+            } else if (checkText.test(city.value) == false) {
+                missCity.textContent = "La ville est obligatoire.";
+                missCity.style.color = "red";
                 return false;
             } else if (checkEmail.test(email.value) == false) {
                 missEmail.textContent = "L'email est obligatoire est doit être de la forme abc@exemple.com";
@@ -101,13 +100,20 @@ class Form extends Component {
             for (let i = 0; i < currentProducts.length; i++) {
                 products.push(currentProducts[i]._id);
             }
-            let contact  = new Contact(lastname.value, firstname.value, address.value, town.value, email.value);
+            let contact  = new Contact(lastName.value, firstName.value, address.value, city.value, email.value);
  
+            // let contact  = {
+            //     lastname : lastName.value, 
+            //     firstName : firstName.value, 
+            //     address : address.value, 
+            //     city : city.value, 
+            //     email : email.value
+            // };
+
             let order = {contact, products};
             console.log(order);
             orinoco.dataManager.postOrder(order).then(data => {
                 //localStorage.setItem('order_id', data.order_id);
-                //localStorage.setItem('totalPrice', total);
                 console.log(data);
             });
             orinoco.dataManager.clearLocalStorage();
@@ -125,7 +131,7 @@ class Form extends Component {
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="mb-3">Merci pour votre commande !</h2>
-                        <p>Nous vous remercions pour votre achat d'un montant de .......€</p>
+                        <p>Nous vous remercions pour votre achat d'un montant de ${orinoco.cart.totalCart()}</p>
                         <p>Pour toute question, merci de préciser le numéro de commande suivant : ..........</p>
                     </div>
                 </div></div>

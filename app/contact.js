@@ -1,9 +1,9 @@
 class Contact {
-    constructor(lastname, firstname, address, town, email) {
-        this.lastname = lastname;
-        this.firstname = firstname;
+    constructor(lastName, firstName, address, city, email) {
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.address = address;
-        this.town = town;
+        this.city = city;
         this.email = email;
     }
 }
