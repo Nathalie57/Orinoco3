@@ -9,7 +9,7 @@ class Product extends Component {
 
     click() {
 		this.resume = !this.resume;
-		if(!this.resume) pageInit('product', this._id);
+		if(!this.resume) pageInit(this._id);
         this.render();
 	}
 

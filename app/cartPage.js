@@ -1,22 +1,22 @@
 class CartPage {
-    constructor(domTarget){
-        this.domTarget = domTarget;
-        for (const [key, value] of Object.entries(orinoco)) {
-            if (value instanceof Product) orinoco[key].die();
-        }
-        this.render();
+  constructor(domTarget) {
+    this.domTarget = domTarget;
+    for (const [key, value] of Object.entries(orinoco)) {
+      if (value instanceof Product) orinoco[key].die();
     }
+    this.render();
+  }
 
-    render(){
-        if(orinoco.cart.products.length !== 0) {
-            this.domTarget.innerHTML = this.templateCartList();
-            new Form({name:"form"}, document.querySelector("#order-form"));
-        }
-        else this.domTarget.innerHTML = this.templateEmptyCart();
+  render() {
+    if (orinoco.cart.products.length !== 0) {
+      this.domTarget.innerHTML = this.templateCartList();
+      new Form({ name: "form" }, document.querySelector("#order-form"));
     }
+    else this.domTarget.innerHTML = this.templateEmptyCart();
+  }
 
-    templateCartList() {
-        return `
+  templateCartList() {
+    return `
         <section class="ftco-section ftco-cart">
 		<div class="container">
 			<div class="row">
@@ -68,12 +68,12 @@ class CartPage {
 		</div>
 	</section>
         `;
-    }
+  }
 
-    templateEmptyCart() {
-        return `
+  templateEmptyCart() {
+    return `
             <h3>Votre panier Orinoco est vide.</br>
             Découvrez <a href="index.html">nos produits</a> !</h3>
         `;
-    }
+  }
 }
