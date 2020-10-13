@@ -21,7 +21,7 @@ class DataManager {
             body: JSON.stringify(data)
         });
         this.response = await tempData.json();
-        console.log(this.response);
+        return this.response;
     }
 
     setLocalStorage(value, content) {

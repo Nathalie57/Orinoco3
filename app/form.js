@@ -93,7 +93,7 @@ class Form extends Component {
         }
     }
     
-    validateOrder() {        
+    async validateOrder() {        
         if(orinoco.dataManager.getLocalStorage("items") !== null && this.validateInput() == true) {
             let products = [];
             let currentProducts = orinoco.dataManager.getLocalStorage("items");
@@ -103,14 +103,14 @@ class Form extends Component {
             let contact  = new Contact(lastName.value, firstName.value, address.value, city.value, email.value);
 
             let order = {contact, products};
-            this.response = orinoco.dataManager.postOrder(order);
-            console.log(this.response);
+            const {orderId} = await orinoco.dataManager.postOrder(order);
+            this.orderId = orderId;
             localStorage.setItem('orderId', this.response);
 
             this.resume = !this.resume;
             if(!this.resume) pageInit('confirmation', products);
             this.render();
-            //orinoco.dataManager.clearLocalStorage();
+            orinoco.dataManager.clearLocalStorage();
         }
         else return false;
     }
@@ -123,7 +123,7 @@ class Form extends Component {
                     <div class="col-md-12">
                         <h2 class="mb-3">Merci pour votre commande !</h2>
                         <p>Nous vous remercions pour votre achat d'un montant de ${orinoco.cart.totalCart()}</p>
-                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ${localStorage.getItem("order_id")}</p>
+                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ${this.orderId}</p>
                     </div>
                 </div></div>
         </section>
