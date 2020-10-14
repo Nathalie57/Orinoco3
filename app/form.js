@@ -54,7 +54,9 @@ class Form extends Component {
                 </div>
             </div>
             <div class="w-100"></div>
-            
+            <div class="form-group">
+                        <input onclick="orinoco.form.validateOrder()" value="Commander" class="btn btn-primary py-3 px-5">
+                    </div>
         </div>
         `;
     }
@@ -111,6 +113,7 @@ class Form extends Component {
             if(!this.resume) pageInit('confirmation', products);
             this.render();
             orinoco.dataManager.clearLocalStorage();
+            window.setTimeout('window.location.href="index.html"', 10000); 
         }
         else return false;
     }
@@ -123,10 +126,15 @@ class Form extends Component {
                     <div class="col-md-12">
                         <h2 class="mb-3">Merci pour votre commande !</h2>
                         <p>Nous vous remercions pour votre achat d'un montant de ${orinoco.cart.totalCart()}</p>
-                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ${this.orderId}</p>
+                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ${this.orderId}</p><br>
+                        <p>Vous allez être redirigé vers l'accueil dans quelques instants.</p>
                     </div>
                 </div></div>
         </section>
         `;
+    }
+
+    homeReturn(){
+        window.location.href="index.html";
     }
 }

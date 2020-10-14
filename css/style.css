@@ -7718,6 +7718,10 @@ h1, h2, h3, h4, h5,
 .bg-primary {
   background: #c49b63; }
 
+input.btn.btn-primary.py-3.px-5 {
+    margin-top: 2rem;
+}
+
 .btn {
   cursor: pointer;
   -webkit-border-radius: 0;
@@ -7732,7 +7736,8 @@ h1, h2, h3, h4, h5,
   .btn.btn-primary {
     background: #c49b63;
     border: 1px solid #c49b63;
-    color: #000; }
+    color: #000;
+    }
     .btn.btn-primary:hover {
       border: 1px solid #c49b63;
       background: transparent;

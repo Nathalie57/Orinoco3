@@ -11,7 +11,7 @@ class CartPage {
         if(orinoco.cart.products.length !== 0) {
             this.domTarget.innerHTML = this.templateCartList();
             new Form({name:"form"}, document.querySelector("#order-form"));
-        }
+		}
         else this.domTarget.innerHTML = this.templateEmptyCart();
     }
 
@@ -60,9 +60,7 @@ class CartPage {
                     
                     
                     </form>
-                    <div class="form-group">
-                        <input onclick="orinoco.form.validateOrder()" value="Commander" class="btn btn-primary py-3 px-5">
-                    </div>
+                    
                 </div>
 			</div>
 		</div>
@@ -75,5 +73,7 @@ class CartPage {
             <h3>Votre panier Orinoco est vide.</br>
             Découvrez <a href="index.html">nos produits</a> !</h3>
         `;
-    }
+	}
+	
+   
 }
