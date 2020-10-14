@@ -4,7 +4,8 @@ class CartPage {
         for (const [key, value] of Object.entries(orinoco)) {
             if (value instanceof Product) orinoco[key].die();
         }
-        this.render();
+		this.render();
+		history.pushState({page: "cartPage"}, "cartPage", "?panier")
     }
 
     render(){

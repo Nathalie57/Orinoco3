@@ -113,6 +113,7 @@ class Form extends Component {
             if(!this.resume) pageInit('confirmation', products);
             this.render();
             orinoco.dataManager.clearLocalStorage();
+            history.pushState({page: "confirmation"}, "confirmation", "?confirmation")
             window.setTimeout('window.location.href="index.html"', 10000); 
         }
         else return false;
