@@ -46,7 +46,6 @@ class CartPage {
 							<thead class="thead-primary">
 								<tr class="text-center">
 									<th>&nbsp;</th>
-									<th>&nbsp;</th>
 									<th>Produit</th>
 									<th>Prix</th>
 									<th>Quantité</th>
@@ -61,6 +60,12 @@ class CartPage {
 				</div>
 			</div>
 			<div class="row justify-content-end">
+				<div class="col col-lg-3 col-md-6 mt-5 cart-wrap">
+					<div onclick="orinoco.cart.removeCart()" class="cart-total mb-3 remove-cart">
+						<p class="d-flex total-price">Effacer le panier</p>
+						<span class="icon-close"></span>
+					</div>
+				</div>
 				<div class="col col-lg-3 col-md-6 mt-5 cart-wrap">
 					<div class="cart-total mb-3">
 						<p class="d-flex total-price">
@@ -95,10 +100,9 @@ class CartPage {
 	 */
 	templateEmptyCart() {
 		return `
-            <h3>Votre panier Orinoco est vide.</br>
+            <h3 class="empty-cart">Votre panier Orinoco est vide.</br>
             Découvrez <a href="index.html">nos produits</a> !</h3>
         `;
 	}
-
 
 }

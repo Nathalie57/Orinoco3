@@ -81,10 +81,18 @@ p {
   margin-top: 0;
   margin-bottom: 1rem; }
 
+div#resume-products {
+    display: flex;
+    justify-content: center;
+}
+
 .quantity.form-control.input-number {
   display: flex;
   justify-content: center;
   align-items: center;}
+
+span.icon-close {
+  margin: auto;}
 
 abbr[title],
 abbr[data-original-title] {
@@ -187,6 +195,12 @@ svg:not(:root) {
 
 table {
   border-collapse: collapse; }
+
+.see-products {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
 
 caption {
   padding-top: 0.75rem;
@@ -320,7 +334,12 @@ h2, .h2 {
   font-size: 2rem; }
 
 h3, .h3 {
-  font-size: 1.75rem; }
+  font-size: 1.75rem;
+  }
+
+h3.empty-cart {
+    text-align: center;
+}
 
 h4, .h4 {
   font-size: 1.5rem; }
@@ -866,6 +885,17 @@ pre {
     margin-left: 83.33333%; }
   .offset-sm-11 {
     margin-left: 91.66667%; } }
+
+@media (max-width: 767px) {
+.btn.btn-primary {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  footer.ftco-footer.ftco-section.img {
+    padding-top: 3rem;
+  }
+}
 
 @media (min-width: 768px) {
   .col-md {
@@ -5353,7 +5383,8 @@ button.bg-dark:focus {
 .justify-content-end {
   -webkit-box-pack: end !important;
   -ms-flex-pack: end !important;
-  justify-content: flex-end !important; }
+  justify-content: space-around;
+  }
 
 .justify-content-center {
   -webkit-box-pack: center !important;
@@ -7312,7 +7343,8 @@ h1, h2, h3, h4, h5,
   line-height: 1.4;
   color: #fff;
   font-weight: 400;
-  font-family: "Josefin Sans", Arial, sans-serif; }
+  font-family: "Josefin Sans", Arial, sans-serif;
+  }
 
 .text-primary {
   color: #c49b63 !important; }
@@ -8157,16 +8189,28 @@ a.btn.btn-primary.py-3.px-5 {
     margin: auto;
     text-align: center;
     display: block;
+    color: white;
     }
     .cart-total p span {
       display: block;
       width: 50%; }
     .cart-total p.total-price span {
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      color: white;
+      }
       .cart-total p.total-price span:last-child {
-        color: #c49b63; }
-  .cart-total hr {
+        color: #c49b63;
+        font-weight: bold;
+        }
+
+.cart-total hr {
     background: rgba(255, 255, 255, 0.1); }
+
+.cart-total.mb-3.remove-cart {
+    display: flex;
+    justify-content: flex-end;
+    width: 13rem;
+}
 
 .billing-heading {
   font-size: 24px;

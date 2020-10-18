@@ -78,11 +78,11 @@ class Cart extends Component {
       }
       else products[this.products[i]._id].qty++;
     }
+    console.table(products);
     let content = "";
     for (const [key, value] of Object.entries(products)) {
       content += `
           <tr class="text-center">
-            <td class="product-remove"><div onclick=""><span class="icon-close"></span></div></td>
             <td class="image-prod">
                 <div class="img" style="background-image:url(${value.imageUrl});"></div>
             </td>
@@ -105,7 +105,7 @@ class Cart extends Component {
   /**
    * calculates and displays total price
    *
-   * @return {*} 
+   * @returns total price
    * @memberof Cart
    */
   totalCart() {
@@ -118,4 +118,10 @@ class Cart extends Component {
 			<span>${total / 100}€</span>
     `;
   }
+  
+	removeCart() {
+    orinoco.dataManager.clearLocalStorage();
+    // this.products = [];
+    window.location.href= "index.html"; 
+	}
 }
