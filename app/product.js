@@ -1,50 +1,55 @@
 class Product extends Component {
-	/**
-	 * Creates an instance of Product.
-	 * @param {*} props
-	 * @param {object} domTarget
-	 * @memberof Product
-	 */
-	constructor(props, domTarget) {
-		console.log(props);
-		super(props, domTarget, "product");
-		this.products = [];
-		this.resume = true;
-		this.render();
-	}
+  /**
+   * Creates an instance of Product.
+   * @param {object} props
+   * @param {HTMLElement} domTarget
+   * @param {bool} resume affichage par défaut de la fiche produit
+   * @memberof Product
+   */
+  constructor(props, domTarget, resume = true) {
+    console.log(props);
+    super(props, domTarget, "product");
+    if (Object.entries(props).length === 0) {
+      this.productError();
+      return;
+    }
+    this.products = [];
+    this.resume = resume;
+    this.render();
+  }
 
-	/**
-	 * changes DOM - creates product page to click
-	 *
-	 * @memberof Product
-	 */
-	click() {
-		this.resume = !this.resume;
-		if (!this.resume) pageInit(this._id);
-		this.render();
-	}
+  /**
+   * changes DOM - creates product page to click
+   *
+   * @memberof Product
+   */
+  click() {
+    this.resume = !this.resume;
+    if (!this.resume) pageInit(this._id);
+    this.render();
+  }
 
-	/**
-	 * Changes DOM to click
+  /**
+   * Changes DOM to click
      * 
      * @returns templateResume() if resume=true else templateSingle()
-	 * @memberof Product
-	 */
-	render() {
-		this.DOM.innerHTML = this.resume ? this.templateResume() : this.templateSingle();
-	}
+   * @memberof Product
+   */
+  render() {
+    this.DOM.innerHTML = this.resume ? this.templateResume() : this.templateSingle();
+  }
 
-	/**
-	 * Creates template for products in home page
-     *
-     * @returns templateResume() in render() function if this.resume=true
-	 * @memberof Product
-	 */
-	templateResume() {
-		return `
+  /**
+   * Creates template for products in home page
+   *
+   * @returns templateResume() in render() function if this.resume=true
+   * @memberof Product
+   */
+  templateResume() {
+    return `
 		<div class="col-md-3">
 			<div class="menu-entry">
-        		<div class="img" style="background-image: url(${this.imageUrl});"></div>
+        <div class="img" style="background-image: url(${this.imageUrl});"></div>
 				<div class="text text-center pt-4">
 					<h2><div>${this.name}</div></h2>
 					<p class="price"><span>${this.price * .01}€</span></p>
@@ -52,17 +57,17 @@ class Product extends Component {
 				</div>
 			</div>
 		</div>
-        `
-	}
+        `;
+  }
 
-	/**
-	 * Creates template for single product page
-	 *
-	 * @returns templateSingle() in render() function if this.resume = !this.resume
-	 * @memberof Product
-	 */
-	templateSingle() {
-		return `
+  /**
+   * Creates template for single product page
+   *
+   * @returns templateSingle() in render() function if this.resume = !this.resume
+   * @memberof Product
+   */
+  templateSingle() {
+    return `
 		<div class="row" id="single-product">
 			<div class="col-lg-6 mb-5">
 				<img src="${this.imageUrl}" class="img-fluid" alt="Colorlib Template">
@@ -97,33 +102,37 @@ class Product extends Component {
 			<button class="btn btn-primary btn-outline-primary" onclick="window.location.href='index.html'">Retour aux produits</button>
 		</div>	
 		`;
-	}
+  }
 
-	/**
-	 * Creates select color in single product page
-	 *
-	 * @return select color form
-	 * @memberof Product
-	 */
-	colorChoice() {
-		let content = "";
-		this.colors.forEach(function (color) {
-			content += `<option value="${color}">${color}</option>`;
-		});
-		return content;
-	}
+  /**
+   * Creates select color in single product page
+   *
+   * @return select color form
+   * @memberof Product
+   */
+  colorChoice() {
+    let content = "";
+    this.colors.forEach(function (color) {
+      content += `<option value="${color}">${color}</option>`;
+    });
+    return content;
+  }
 
-	/**
-	 * calls orinoco.cart.add() to push a product in the local storage
-	 *
-	 * @memberof Product
-	 */
-	add() {
-		orinoco.cart.add({ imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id });
-	}
+  /**
+   * calls orinoco.cart.add() to push a product in the local storage
+   *
+   * @memberof Product
+   */
+  add() {
+    orinoco.cart.add({ imageUrl: this.imageUrl, name: this.name, price: this.price, _id: this._id });
+  }
 
-	selectColor(info) {
-		console.log("info:", info);
-	}
+  selectColor(info) {
+    console.log("info:", info);
+  }
+
+  productError() {
+    this.DOM.innerHTML = "oups, le produit demandé n'existe pas";
+  }
 }
 

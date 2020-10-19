@@ -26,6 +26,19 @@ class DataManager {
     }
 
     /**
+     * get data of 1 product
+     *
+     * @param {string}   the product Id
+     * @param {Function} callbackFunction
+     * @memberof DataManager
+     */
+    async getProduct(product, callbackFunction) {
+        const tempData = await fetch("http://" + this.src+product);
+        const dataProduct = await tempData.json();
+        callbackFunction(dataProduct);
+    }
+
+    /**
      * post request to API
      *
      * @param {object} data
