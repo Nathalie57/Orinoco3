@@ -250,11 +250,13 @@ class Form extends Component {
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="mb-3">Merci pour votre commande !</h2>
+                        <div class="confirmation">
                         <p>Nous vous remercions pour votre achat d'un montant de ${orinoco.cart.totalCart()}</p>
-                        <p>Pour toute question, merci de préciser le numéro de commande suivant : ${this.orderId}</p><br>
+                        <p>Pour toute question, merci de préciser le numéro de commande suivant : <span>${this.orderId}<span></p><br>
                         <p>Vous allez être redirigé vers l'accueil dans quelques instants.</p>
                     </div>
-                </div></div>
+                </div>
+            </div>
         </section>
         `;
     }

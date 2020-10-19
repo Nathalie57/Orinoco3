@@ -8206,6 +8206,11 @@ a.btn.btn-primary.py-3.px-5 {
 .cart-total hr {
     background: rgba(255, 255, 255, 0.1); }
 
+.confirmation {
+    font-size: 1.3rem;
+    color: #ffffff8c;
+}
+
 .cart-total.mb-3.remove-cart {
     display: flex;
     justify-content: flex-end;
