@@ -4,8 +4,8 @@ class Cart extends Component {
    * Creates an instance of Cart.
    * 
    * @constructor
-   * @param {*} props
-   * @param {obect} domTarget
+   * @param {object} props
+   * @param {HTMLElement} domTarget
    * @memberof Cart
    */
   constructor(props, domTarget) {
@@ -29,9 +29,9 @@ class Cart extends Component {
   }
 
   /**
-     * Displays icon cart in nav bar
+     * Changes DOM
      * 
-     * @returns iconCartTemplate()
+     * @returns {void}
      * @memberof Cart
      */
   render() {
@@ -41,7 +41,7 @@ class Cart extends Component {
   /**
    * Creates iconCartTemplate() in nav bar with number products in cart
    *
-   * @returns template in render() function
+   * @returns {string} template in render() function
    * @memberof Cart
    */
   iconCartTemplate() {
@@ -65,20 +65,18 @@ class Cart extends Component {
   /**
    * makes a loop to display each product in cart
    *
-   * @returns cartItem template
+   * @returns {string} cartItem template
    * @memberof Cart
    */
   cartItem() {
     let products = {};
     for (let i = 0, count = this.products.length; i < count; i++) {
-      console.log(this.products[i]._id);
       if (products[this.products[i]._id] === undefined) {
         products[this.products[i]._id] = this.products[i];
         products[this.products[i]._id].qty = 1;
       }
       else products[this.products[i]._id].qty++;
     }
-    console.table(products);
     let content = "";
     for (const [key, value] of Object.entries(products)) {
       content += `
@@ -105,7 +103,7 @@ class Cart extends Component {
   /**
    * calculates and displays total price
    *
-   * @returns total price
+   * @returns {string} with total price
    * @memberof Cart
    */
   totalCart() {
@@ -119,7 +117,12 @@ class Cart extends Component {
     `;
   }
   
-	removeCart() {
+  /**
+   * delete cart and local storage
+   *
+   * @memberof Cart
+   */
+ removeCart() {
     orinoco.dataManager.clearLocalStorage();
     // this.products = [];
     window.location.href= "index.html"; 

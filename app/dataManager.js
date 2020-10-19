@@ -26,10 +26,23 @@ class DataManager {
     }
 
     /**
+     * get data of 1 product
+     *
+     * @param {string}   product Id
+     * @param {Function} callbackFunction
+     * @memberof DataManager
+     */
+    async getProduct(product, callbackFunction) {
+        const tempData = await fetch("http://" + this.src+product);
+        const dataProduct = await tempData.json();
+        callbackFunction(dataProduct);
+    }
+
+    /**
      * post request to API
      *
      * @param {object} data
-     * @returns response from API
+     * @returns {object} response from API
      * @memberof DataManager
      */
     async postOrder(data) {
@@ -59,7 +72,7 @@ class DataManager {
      * get datas in local storage
      *
      * @param {string} value
-     * @return datas
+     * @return {Array} datas
      * @memberof DataManager
      */
     getLocalStorage(value) {
@@ -75,3 +88,4 @@ class DataManager {
         localStorage.clear();
     }
 }
+

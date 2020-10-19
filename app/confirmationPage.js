@@ -1,7 +1,7 @@
 class ConfirmationPage {
     /**
      * Creates an instance of ConfirmationPage.
-     * @param {object} domTarget
+     * @param {HTMLElement} domTarget
      * @memberof ConfirmationPage
      */
     constructor(domTarget) {

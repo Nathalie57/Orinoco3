@@ -2,7 +2,7 @@ class CartPage {
 	/**
 	 * Creates an instance of CartPage.
 	 * @constructor
-	 * @param {object} domTarget
+	 * @param {HTMLElement} domTarget
 	 * @memberof CartPage
 	 */
 	constructor(domTarget) {
@@ -32,7 +32,7 @@ class CartPage {
 	 * Creates templateCartList() if  number items in cart > 0
 	 * Calls orinoco.cart.cartItem() and orinoco.cart.totalCart()
 	 *
-	 * @returns template in render() function
+	 * @returns {string} template in render() function
 	 * @memberof CartPage
 	 */
 	templateCartList() {
@@ -95,7 +95,7 @@ class CartPage {
 	/**
 	 * Creates templateEmptyCart() if number items in cart = 0
 	 *
-	 * @returns template in render() function
+	 * @returns {string} template in render() function
 	 * @memberof CartPage
 	 */
 	templateEmptyCart() {

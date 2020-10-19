@@ -13,23 +13,17 @@ const content = document.querySelector("#resume-products");
  * generates page
  *
  * @param {object} product
- * @return home page, cart page or product page
+ * @return {object} home page, cart page or product page
  */
 function pageInit(product) {
-  // if (product === undefined){
-  //   // const address = window.location.href;
-  //   product = window.location.search.slice(1);
-  //   console.log(product);
-  // }
-  // else {
-  //   history.pushState({page: "cartPage"}, "cartPage", "?page=panier")
-  // }
-
-  // orinoco.pages.push(page);
+  if (product === ""){
+    product = window.location.search.slice(1);
+    if (product === "panier") product = "cartPage";
+  }
+  
   switch (product) {
     case "": return new Home(content);
-    case "cartPage": return new CartPage(content);
-    // case "confirmation": return new ConfirmationPage(content, argument);
-    default: return new ProductPage(content, product);
+    case "cartPage": return new CartPage(document.querySelector("#resume-products"));
+    default: return new ProductPage(document.querySelector("#resume-products"), product);
   }
 }

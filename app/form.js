@@ -3,8 +3,8 @@ class Form extends Component {
     /**
      * Creates an instance of Form.
      * @constructor
-     * @param {*} props
-     * @param {object} domTarget
+     * @param {object} props
+     * @param {HTMLElement} domTarget
      * @memberof Form
      */
     constructor(props, domTarget) {
@@ -23,17 +23,17 @@ class Form extends Component {
     /**
      * Changes DOM when form is valid
      * 
-     * @returns templateOrderForm() if resume=true else confirmation()
+     * @returns {void}
      * @memberof Form
      */
-    render(){
-		this.DOM.innerHTML = this.resume ? this.templateOrderForm() : this.confirmation();
+    render() {
+        this.DOM.innerHTML = this.resume ? this.templateOrderForm() : this.confirmation();
     }
 
     /**
      * Creates order form template
      *
-     * @returns template in render() function if this.resume=true
+     * @returns {string} template in render() function if this.resume=true
      * @memberof Form
      */
     templateOrderForm() {
@@ -90,7 +90,7 @@ class Form extends Component {
     /**
      * Validates lastName in order form
      *
-     * @returns true if lastName is valid
+     * @returns {bool} true if lastName is valid
      * @memberof Form
      */
     lastNameValidate() {
@@ -98,22 +98,20 @@ class Form extends Component {
             missLastName.textContent = "Le nom de famille est obligatoire";
             missLastName.style.color = "red";
             return false;
-        } else if 
-            (this.checkText.test(lastName.value) == false) {
-                missLastName.textContent = "Le nom de famille n'est pas valide.";
-                missLastName.style.color = "red";
-                return false;
         }
-        else {
-            missLastName.textContent = undefined;
-            return true;
+        if (this.checkText.test(lastName.value) == false) {
+            missLastName.textContent = "Le nom de famille n'est pas valide.";
+            missLastName.style.color = "red";
+            return false;
         }
+        missLastName.textContent = undefined;
+        return true;
     }
 
     /**
      * Validates firstName in order form
      *
-     * @returns true if firstName is valid
+     * @returns {bool} true if firstName is valid
      * @memberof Form
      */
     firstNameValidate() {
@@ -121,22 +119,20 @@ class Form extends Component {
             missFirstName.textContent = "Le prénom est obligatoire";
             missFirstName.style.color = "red";
             return false;
-        } else if 
-            (this.checkText.test(firstName.value) == false) {
-                missFirstName.textContent = "Le prénom n'est pas valide.";
-                missFirstName.style.color = "red";
-                return false;
         }
-        else {
-            missFirstName.textContent = undefined;
-            return true;
+        if (this.checkText.test(firstName.value) == false) {
+            missFirstName.textContent = "Le prénom n'est pas valide.";
+            missFirstName.style.color = "red";
+            return false;
         }
+        missFirstName.textContent = undefined;
+        return true;
     }
 
     /**
      * Validates address in order form
      *
-     * @returns true if address is valid
+     * @returns {bool} true if address is valid
      * @memberof Form
      */
     addressValidate() {
@@ -144,22 +140,20 @@ class Form extends Component {
             missAddress.textContent = "L'adresse est obligatoire";
             missAddress.style.color = "red";
             return false;
-        } else if 
-            (this.checkText.test(address.value) == false) {
-                missAddress.textContent = "L'adresse n'est pas valide.";
-                missAddress.style.color = "red";
-                return false;
         }
-        else {
-            missAddress.textContent = undefined;
-            return true;
+        if (this.checkText.test(address.value) == false) {
+            missAddress.textContent = "L'adresse n'est pas valide.";
+            missAddress.style.color = "red";
+            return false;
         }
+        missAddress.textContent = undefined;
+        return true;
     }
 
     /**
      * Validates city in order form
      *
-     * @returns true if city is valid
+     * @returns {bool} true if city is valid
      * @memberof Form
      */
     cityValidate() {
@@ -167,22 +161,20 @@ class Form extends Component {
             missCity.textContent = "Le nom de la ville est obligatoire";
             missCity.style.color = "red";
             return false;
-        } else if 
-            (this.checkText.test(city.value) == false) {
-                missCity.textContent = "Le nom de la ville n'est pas valide.";
-                missCity.style.color = "red";
-                return false;
         }
-        else {
-            missCity.textContent = undefined;
-            return true;
+        if (this.checkText.test(city.value) == false) {
+            missCity.textContent = "Le nom de la ville n'est pas valide.";
+            missCity.style.color = "red";
+            return false;
         }
+        missCity.textContent = undefined;
+        return true;
     }
 
     /**
      * Validates email in order form
      *
-     * @returns true if email is valid
+     * @returns {bool} true if email is valid
      * @memberof Form
      */
     emailValidate() {
@@ -190,49 +182,46 @@ class Form extends Component {
             missEmail.textContent = "L'email est obligatoire";
             missEmail.style.color = "red";
             return false;
-        } else if 
-            (this.checkEmail.test(email.value) == false) {
-                missEmail.textContent = "L'email n'est pas valide.";
-                missEmail.style.color = "red";
-                return false;
         }
-        else {
-            missEmail.textContent = undefined;
-            return true;
+        if (this.checkEmail.test(email.value) == false) {
+            missEmail.textContent = "L'email n'est pas valide.";
+            missEmail.style.color = "red";
+            return false;
         }
+        missEmail.textContent = undefined;
+        return true;
     }
-    
+
     /**
      * Validates order form, sends post request to API -> gets idOrder from API
      *
-     * @returns true if order form and post request are ok
+     * @returns {bool} true if order form and post request are ok
      * @memberof Form
      */
-    async validateOrder() {        
-        if(orinoco.dataManager.getLocalStorage("items") !== null
-            && this.lastNameValidate()  == true 
-            && this.firstNameValidate() == true 
-            && this.addressValidate()   == true
-            && this.cityValidate()      == true
-            && this.emailValidate()     == true) {
+    async validateOrder() {
+        if (orinoco.dataManager.getLocalStorage("items") !== null
+            && this.lastNameValidate() == true
+            && this.firstNameValidate() == true
+            && this.addressValidate() == true
+            && this.cityValidate() == true
+            && this.emailValidate() == true) {
             let products = [];
             let currentProducts = orinoco.dataManager.getLocalStorage("items");
             for (let i = 0; i < currentProducts.length; i++) {
                 products.push(currentProducts[i]._id);
             }
-            let contact  = new Contact(lastName.value, firstName.value, address.value, city.value, email.value);
+            let contact = new Contact(lastName.value, firstName.value, address.value, city.value, email.value);
 
-            let order = {contact, products};
-            const {orderId} = await orinoco.dataManager.postOrder(order);
+            let order = { contact, products };
+            const { orderId } = await orinoco.dataManager.postOrder(order);
             this.orderId = orderId;
             localStorage.setItem('orderId', this.response);
 
             this.resume = !this.resume;
-           // if(!this.resume) pageInit('confirmation', products);
+            // if(!this.resume) pageInit('confirmation', products);
             this.render();
             orinoco.dataManager.clearLocalStorage();
-            history.pushState({page: "confirmation"}, "confirmation", "?confirmation")
-            window.setTimeout('window.location.href="index.html"', 10000); 
+            window.setTimeout('window.location.href="index.html"', 10000);
         }
         else return false;
     }
@@ -240,7 +229,7 @@ class Form extends Component {
     /**
      * Creates confirmation template
      *
-     * @returns template in render() function if this.resume=!this.resume
+     * @returns {string} template in render() function if this.resume=!this.resume
      * @memberof Form
      */
     confirmation() {

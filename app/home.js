@@ -1,7 +1,7 @@
 class Home {
     /**
      * Creates an instance of Home.
-     * @param {Object} domTarget
+     * @param {HTMLElement} domTarget
      * @memberof Home
      */
     constructor(domTarget) {

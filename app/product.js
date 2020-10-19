@@ -1,15 +1,19 @@
 class Product extends Component {
 	/**
 	 * Creates an instance of Product.
-	 * @param {*} props
-	 * @param {object} domTarget
+	 * @param {object} props
+	 * @param {HTMLElement} domTarget
+	 * @param {boolean} resume displays products by default
 	 * @memberof Product
 	 */
-	constructor(props, domTarget) {
-		console.log(props);
+	constructor(props, domTarget, resume=true) {
 		super(props, domTarget, "product");
+		if (Object.entries(props).length === 0) {
+			this.productError();
+			return;
+		}
 		this.products = [];
-		this.resume = true;
+		this.resume = resume;
 		this.render();
 	}
 
@@ -27,7 +31,7 @@ class Product extends Component {
 	/**
 	 * Changes DOM to click
      * 
-     * @returns templateResume() if resume=true else templateSingle()
+     * @returns {string} templateResume() if resume=true else templateSingle()
 	 * @memberof Product
 	 */
 	render() {
@@ -37,7 +41,7 @@ class Product extends Component {
 	/**
 	 * Creates template for products in home page
      *
-     * @returns templateResume() in render() function if this.resume=true
+     * @returns {string} templateResume() in render() function if this.resume=true
 	 * @memberof Product
 	 */
 	templateResume() {
@@ -58,7 +62,7 @@ class Product extends Component {
 	/**
 	 * Creates template for single product page
 	 *
-	 * @returns templateSingle() in render() function if this.resume = !this.resume
+	 * @returns {string} templateSingle() in render() function if this.resume = !this.resume
 	 * @memberof Product
 	 */
 	templateSingle() {
@@ -102,7 +106,7 @@ class Product extends Component {
 	/**
 	 * Creates select color in single product page
 	 *
-	 * @return select color form
+	 * @return {string} select color form
 	 * @memberof Product
 	 */
 	colorChoice() {
@@ -124,6 +128,15 @@ class Product extends Component {
 
 	selectColor(info) {
 		console.log("info:", info);
+	}
+
+	/**
+	 * displays error if the product doesn't exist
+	 *
+	 * @memberof Product
+	 */
+	productError() {
+		this.DOM.innerHTML = "Oups, le produit demandé n'existe pas !"
 	}
 }
 
