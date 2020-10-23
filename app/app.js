@@ -23,7 +23,7 @@ function pageInit(product) {
   
   switch (product) {
     case "": return new Home(content);
-    case "cartPage": return new CartPage(document.querySelector("#resume-products"));
-    default: return new ProductPage(document.querySelector("#resume-products"), product);
+    case "cartPage": return new CartPage(content);
+    default: return new ProductPage(content, product);
   }
 }
