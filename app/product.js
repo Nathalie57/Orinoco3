@@ -31,7 +31,7 @@ class Product extends Component {
 	/**
 	 * Changes DOM to click
      * 
-     * @returns {string} templateResume() if resume=true else templateSingle()
+     * @returns {void} templateResume() if resume=true else templateSingle()
 	 * @memberof Product
 	 */
 	render() {
