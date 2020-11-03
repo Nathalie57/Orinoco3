@@ -20,6 +20,9 @@ function pageInit(product) {
     product = window.location.search.slice(1);
     if (product === "panier") product = "cartPage";
   }
+  window.onpopstate = function() {  
+     history.go(0);
+  }
   
   switch (product) {
     case "": return new Home(content);
